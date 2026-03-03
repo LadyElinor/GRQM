@@ -4,6 +4,14 @@ Governance-first computational physics workflow for GR↔QM proxy research.
 
 This repo is primarily a **methodology product**: explicit envelopes, gate-driven cycles, null tests, and conservative claim promotion (`OPEN -> PROVEN`) with auditable artifacts.
 
+## Current claim status (quick banner)
+- **PROVEN (scope-limited):** `C-WDW-001` in-core toy-proxy claim (`Ω_m <= 0.300`, declared α corridor, Cycle-3-equivalent hardening baseline)
+- **PROVEN:** `C-CORE-001` (meta-process / study-system claim)
+- **OPEN:** `C-GRQM-001`, `C-GRQM-002` (provisional in-core support; not globally promoted)
+- **BLOCKED:** edge expansion `Ω_m >= 0.305`, and overgeneralized `C-WDW-002`
+
+Canonical source of truth: `CLAIM_STATUS_MATRIX.md`
+
 ## 30-second purpose
 - Validate a disciplined research workflow on a minisuperspace-inspired toy ODE.
 - Keep physics claims scoped and falsifiable.

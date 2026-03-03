@@ -1,7 +1,7 @@
 # Claim Status Matrix
 
 Created: 2026-02-28  
-Updated: 2026-03-02 (governance hold-lift closure; in-core promotion confirmed with edge block caveat)
+Updated: 2026-03-03 (governance sign-off finalized; in-core promotion retained with edge block caveat)
 
 Purpose: enforce disciplined claim handling using **PROVEN / OPEN / BLOCKED** states.
 
@@ -45,6 +45,12 @@ Promotion scope and caveat:
 Cross-refs:
 - `GR_QM_MONTHLY_GATE_REPORT_01.md`
 - `GR_QM_CONSECUTIVE_CYCLE_PROMOTION_LEDGER.md`
+
+## Diagnostic branch receipt (non-promoting)
+- Nonlinear scalar branch phase-1b method-controlled micro-check completed with RK-family comparator and tiny dt anchor:
+  - `GR_QM_NONLINEAR_PHASE1B_NOTE_2026-03-03.md`
+  - `notebooks/outputs/grqm_nonlinear_scalar_phase1b_20260303_175346/nonlinear_phase1b_metrics.json`
+- Interpretation: contracts prior Euler-vs-RK spread for this narrow diagnostic lane; does not mutate claim status, thresholds, or envelope scope.
 
 ## Claim Hygiene Checklist
 

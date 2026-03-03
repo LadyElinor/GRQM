@@ -49,3 +49,13 @@ Date-stamped governance action: **2026-03-02 (EST)**
 - `GR_QM_CONSECUTIVE_CYCLE_PROMOTION_LEDGER.csv`
 - `GR_QM_CONSECUTIVE_CYCLE_PROMOTION_LEDGER.md`
 - `GR_QM_NULL_TEST_LOG.md`
+
+## Main-Lane Governance Sign-off Addendum (2026-03-03)
+Date-stamped governance action: **2026-03-03 (EST)**
+
+- Main-lane governance lift/sign-off is confirmed and finalized.
+- No main-lane thresholds or claim statuses changed in this addendum.
+- Bounded nonlinear branch receipt linked as method-risk closure context (non-promoting):
+  - `GR_QM_NONLINEAR_PHASE1B_NOTE_2026-03-03.md`
+  - `notebooks/outputs/grqm_nonlinear_scalar_phase1b_20260303_175346/nonlinear_phase1b_metrics.json`
+- Scope caveat unchanged: **`Ω_m >= 0.305` remains blocked** pending dedicated mitigation evidence.
