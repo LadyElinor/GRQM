@@ -25,15 +25,23 @@ Explicit null definitions and cycle-level reject outcomes are now documented in:
 ## Governance Interpretation
 - Technical/numerical blocker status: **cleared in-core**.
 - Edge expansion (Ω_m >= 0.305): **still blocked** pending dedicated mitigation evidence.
-- Promotion flag in ledger remains conservative until explicit governance promotion action is taken.
+- Governance hold-lift for in-core promotion: **executed** (see addendum below).
 
 ## Decision
-**Proceed (conservative):**
+**Proceed (conservative, post hold-lift):**
 1. Keep Cycle-3-equivalent hardening signature as gate baseline.
 2. Treat widened dt hardening probes as exploratory-only unless explicitly promoted into gate policy.
-3. Run one final governance review pass on ledger + claim wording; then either:
-   - promote in-core claim status, or
-   - hold with explicit rationale and next-cycle trigger.
+3. Maintain promoted in-core claim posture in ledger/matrix with explicit scope caveat.
+4. Keep Ω_m >= 0.305 as blocked edge lane until dedicated mitigation evidence clears expansion criteria.
+
+## Governance Hold-Lift Addendum (2026-03-02)
+Date-stamped governance action: **2026-03-02 (EST)**
+
+- Hold-lift scope: in-core Q1 proxy claim only (`Ω_m <= 0.300`, declared α corridor, Cycle-3-equivalent hardening signature).
+- Promotion action executed across canonical governance artifacts:
+  - `CLAIM_STATUS_MATRIX.md`: `C-WDW-001` retained as **PROVEN (core envelope)** with explicit edge block caveat.
+  - `GR_QM_CONSECUTIVE_CYCLE_PROMOTION_LEDGER.csv/.md`: promotion eligibility flipped to **YES** for `cycle-4-reverted-hardening-20260302`.
+- Explicit non-expansion caveat: **`Ω_m >= 0.305` remains blocked** pending dedicated mitigation evidence and separate governance close.
 
 ## Canonical artifacts
 - `notebooks/outputs/grqm_cycle3_core_confirm_20260302_172931/`

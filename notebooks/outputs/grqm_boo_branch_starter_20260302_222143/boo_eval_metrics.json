@@ -1,0 +1,23 @@
+{
+  "run_dir": "C:\\Users\\arren\\.openclaw\\workspace\\Physics\\notebooks\\outputs\\grqm_boo_branch_starter_20260302_222143",
+  "timestamp_eval": "2026-03-02T22:22:26.478093",
+  "n_core_points": 20,
+  "spearman_q1_vs_boo_slow": 1.0,
+  "deterministic_max_abs_delta": 0.0,
+  "deterministic_max_rel_delta": 0.0,
+  "signal_retention_q1_min": 0.005314325596903124,
+  "signal_retention_q1_max": 0.12178855064762262,
+  "signal_retention_q1_span_ratio": 22.917028403109303,
+  "signal_retention_boo_slow_min": 0.005314302791930349,
+  "signal_retention_boo_slow_max": 0.12178784879801258,
+  "signal_retention_boo_slow_span_ratio": 22.91699467763143,
+  "sensitivity_max_rel_delta_q1": 0.0004958900914741136,
+  "sensitivity_max_rel_delta_boo_slow": 0.0004948041271936488,
+  "sensitivity_max_rel_delta_boo_fast": 0.1532343460593045,
+  "criteria": {
+    "table_complete_20": true,
+    "deterministic_reproducible": true,
+    "spearman_ge_0p95": true,
+    "spearman_lt_0p8_failure": false
+  }
+}

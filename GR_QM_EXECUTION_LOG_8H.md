@@ -234,7 +234,7 @@ Operator mode: autonomous, conservative, auditable
   - cycle3 hardened perturbations (`n=5`, dt centered around `1e-3`, IC Â±0.1%)
   - cycle4 in-policy perturbations (`n in {4,5}`, dt boundaries `8e-4/1.2e-3`, IC in `0.9993..1.0009`).
 
-### 21:45–21:47 — Quick-revert hardening diagnostic (minimal footprint)
+### 21:45ï¿½21:47 ï¿½ Quick-revert hardening diagnostic (minimal footprint)
 - Purpose: test whether Cycle-4 regression is isolated to hardening perturbation policy.
 - Signature snapshot captured:
   - 
@@ -258,7 +258,7 @@ otebooks/outputs/grqm_quick_revert_hardening_20260302_214712/
   - policy  /3 pass_all vs revert 3/3 pass_all
 - Conclusion: regression is attributable to hardening logic/settings change; no extra disambiguation run required.
 
-### 21:52–21:53 — Full 20-point promotion-readiness confirmation under reverted hardening
+### 21:52ï¿½21:53 ï¿½ Full 20-point promotion-readiness confirmation under reverted hardening
 - Updated governance assumption note (auditable):
   - `RESEARCH_ASSUMPTION_REGISTER.md` (Decision Addendum: dominant culprit = widened dt spread in Cycle-4; baseline gate signature reverted to Cycle-3-equivalent; wider dt probes exploratory-only unless explicitly designated).
 - Cross-linked governance decision:
@@ -281,3 +281,72 @@ otebooks/outputs/grqm_quick_revert_hardening_20260302_214712/
 - Promotion status handling:
   - no speculative promotion performed
   - ledger promotion eligibility flag remains `NO` (conservative governance hold).
+
+### 22:15 EST â€” Governance hold-lift closure + BoO kickoff packaging
+- Applied explicit hold-lift governance addendum to monthly gate report:
+  - `GR_QM_MONTHLY_GATE_REPORT_01.md`
+- Synchronized claim/ledger posture to closed governance state:
+  - `CLAIM_STATUS_MATRIX.md` updated metadata and caveat wording for `C-WDW-001`
+  - `GR_QM_CONSECUTIVE_CYCLE_PROMOTION_LEDGER.csv/.md` retained `YES` eligibility row with hold-resolved blocker note
+- Performed lightweight contradiction scan for stale hold wording and documented supersession in journal/log (historical `NO` entries kept as time-stamped prior-state records).
+- Added Born-Oppenheimer branch kickoff artifacts:
+  - `GR_QM_BOO_BRANCH_PLAN_2026-03-02.md`
+  - `notebooks/boo_branch_starter.py`
+- Smoke-tested BoO starter execution:
+  - `python notebooks/boo_branch_starter.py`
+  - output: `notebooks/outputs/grqm_boo_branch_starter_20260302_221738/boo_branch_summary.csv`
+- Immediate next trigger logged:
+  - run first BoO corridor baseline sweep and score against predeclared success/failure criteria.
+
+## 22:21–22:23 — BoO branch kickoff execution (corridor phase-1)
+- Reviewed branch plan and scaffold:
+  - `GR_QM_BOO_BRANCH_PLAN_2026-03-02.md`
+  - `notebooks/boo_branch_starter.py`
+- Executed kickoff run:
+  - `python notebooks/boo_branch_starter.py`
+  - Output: `notebooks/outputs/grqm_boo_branch_starter_20260302_222143/boo_branch_summary.csv`
+- Added conservative evaluator script:
+  - `notebooks/boo_branch_evaluate.py`
+- Executed evaluator:
+  - `python notebooks/boo_branch_evaluate.py`
+  - Outputs:
+    - `notebooks/outputs/grqm_boo_branch_starter_20260302_222143/boo_sensitivity_spotcheck.csv`
+    - `notebooks/outputs/grqm_boo_branch_starter_20260302_222143/boo_eval_metrics.json`
+- Quantitative outcomes:
+  - n_core_points = 20
+  - spearman_q1_vs_boo_slow = 1.0
+  - deterministic_max_abs_delta = 0.0
+  - deterministic_max_rel_delta = 0.0
+  - sensitivity_max_rel_delta_q1 = 4.9589e-4
+  - sensitivity_max_rel_delta_boo_slow = 4.9480e-4
+  - sensitivity_max_rel_delta_boo_fast = 1.5323e-1
+- Criteria disposition:
+  - table_complete_20: PASS
+  - deterministic_reproducible: PASS
+  - spearman_ge_0p95: PASS
+  - spearman_lt_0p8_failure: NOT TRIGGERED
+- Conservative decision: kickoff BoO corridor stage passes; keep branch diagnostic-only and isolated from promotion governance.
+
+## 2026-03-02 22:36 EST â€” BoO phase-2 stress extension execution
+- Command: `python notebooks/boo_phase2_stress_extension.py`
+- Output dir: `notebooks/outputs/grqm_boo_phase2_stress_20260302_223624/`
+- Files written:
+  - `phase2_run_log.jsonl` (attempt-level deterministic audit log)
+  - `boo_phase2_crosscheck_summary.csv` (18-case matrix with status/attempt count)
+  - `boo_phase2_crosscheck_deltas.csv` (relative deltas vs per-point RK4 anchor)
+  - `boo_phase2_report.json` (explicit criteria pass/fail flags)
+
+### Explicit criteria result snapshot
+- `run_matrix_non_empty`: **true**
+- `all_cases_completed`: **true**
+- `deterministic_recheck_anchor_abs_tiny`: **true**
+- `phase1_spearman_ge_0p95_status_unchanged`: **true**
+- `phase1_governance_thresholds_changed`: **false**
+
+### Stress spread snapshot
+- `max_rel_delta_q1_vs_anchor = 0.8552608860`
+- `max_rel_delta_boo_slow_vs_anchor = 0.8547657725`
+- `max_rel_delta_boo_fast_vs_anchor = 18.9667102063`
+
+### Decision note
+No run-step failures occurred (retry path remained available but unused). Governance criteria and claim statuses unchanged. Broader BoO adoption recommendation remains **NO-GO** pending method-harmonized follow-up.

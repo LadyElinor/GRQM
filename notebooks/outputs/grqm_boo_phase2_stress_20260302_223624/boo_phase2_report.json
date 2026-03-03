@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-03-02T22:36:25",
+  "out_dir": "C:\\Users\\arren\\.openclaw\\workspace\\Physics\\notebooks\\outputs\\grqm_boo_phase2_stress_20260302_223624",
+  "n_cases": 18,
+  "n_ok": 18,
+  "n_failed": 0,
+  "max_rel_delta_q1_vs_anchor": 0.8552608860290032,
+  "max_rel_delta_boo_slow_vs_anchor": 0.854765772517929,
+  "max_rel_delta_boo_fast_vs_anchor": 18.966710206316023,
+  "criteria": {
+    "run_matrix_non_empty": true,
+    "all_cases_completed": true,
+    "deterministic_recheck_anchor_abs_tiny": true,
+    "phase1_spearman_ge_0p95_status_unchanged": true,
+    "phase1_governance_thresholds_changed": false
+  },
+  "failed_cases": [],
+  "governance_note": "Phase-2 stress extension only; no threshold/claim-status changes."
+}

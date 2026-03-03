@@ -270,3 +270,86 @@ otebooks/outputs/grqm_quick_revert_hardening_20260302_214712/
 ### Conservative interpretation
 - Reverted/Cycle-3-equivalent hardening signature restores full envelope pass across the 20-point readiness grid.
 - Promotion eligibility flag in canonical ledger remains **NO** (conservative governance hold; no speculative promotion).
+
+---
+
+## 2026-03-02 22:15 EST — Governance closure executed (hold-lift + cross-doc sync)
+
+### Milestones completed
+- Added explicit dated hold-lift addendum in `GR_QM_MONTHLY_GATE_REPORT_01.md`.
+- Confirmed `C-WDW-001` status in `CLAIM_STATUS_MATRIX.md` as **PROVEN (core envelope)** with explicit caveat: `Ω_m>=0.305` remains blocked.
+- Kept promotion eligibility at **YES** for `cycle-4-reverted-hardening-20260302` in canonical ledger artifacts:
+  - `GR_QM_CONSECUTIVE_CYCLE_PROMOTION_LEDGER.csv`
+  - `GR_QM_CONSECUTIVE_CYCLE_PROMOTION_LEDGER.md`
+- Created BoO branch kickoff plan: `GR_QM_BOO_BRANCH_PLAN_2026-03-02.md`.
+- Added minimal BoO starter scaffold script: `notebooks/boo_branch_starter.py`.
+- Smoke-tested BoO scaffold execution:
+  - `python notebooks/boo_branch_starter.py`
+  - output: `notebooks/outputs/grqm_boo_branch_starter_20260302_221738/boo_branch_summary.csv`.
+
+### Consistency note
+- Earlier journal entries indicating `promotion eligibility remains NO` are preserved as historical snapshots; governance status is now superseded by the dated hold-lift action above.
+
+### Next trigger
+- Run first BoO corridor baseline sweep from `notebooks/boo_branch_starter.py` and log pass/fail against plan criteria.
+
+## 2026-03-02 22:21�22:23 EST � BoO branch kickoff corridor evaluation (phase-1)
+
+### Scope run
+- Reviewed kickoff plan: `GR_QM_BOO_BRANCH_PLAN_2026-03-02.md`
+- Reviewed scaffold: `notebooks/boo_branch_starter.py`
+- Executed primary run: `python notebooks/boo_branch_starter.py`
+- Added conservative evaluator: `notebooks/boo_branch_evaluate.py`
+- Executed evaluation: `python notebooks/boo_branch_evaluate.py`
+
+### Artifacts produced
+- `notebooks/outputs/grqm_boo_branch_starter_20260302_222143/boo_branch_summary.csv`
+- `notebooks/outputs/grqm_boo_branch_starter_20260302_222143/boo_sensitivity_spotcheck.csv`
+- `notebooks/outputs/grqm_boo_branch_starter_20260302_222143/boo_eval_metrics.json`
+
+### Key metrics (BoO vs baseline)
+- Core corridor completeness: **20/20 points**
+- Rank consistency (Q1 proxy vs BoO slow diagnostic): **Spearman = 1.0000**
+- Deterministic re-eval (same config): **max abs delta = 0.0**, **max rel delta = 0.0**
+- Signal span retention:
+  - baseline Q1 span ratio: **22.9170**
+  - BoO slow span ratio: **22.9170** (matched at 4 d.p.)
+- Sensitivity spot-check (dt ? {9e-4, 1e-3, 1.1e-3}, 3 representative points):
+  - max rel delta Q1: **4.96e-4**
+  - max rel delta BoO-slow: **4.95e-4**
+  - max rel delta BoO-fast RMS: **1.53e-1** (expected higher small-residual sensitivity)
+
+### Criteria mapping (kickoff plan)
+- Deterministic reproducibility: **PASS**
+- Full 20-point BoO table: **PASS**
+- Monotonic rank consistency (Spearman >= 0.95): **PASS**
+- Governance contradiction introduced: **NO** (diagnostic-only branch retained)
+
+### Outcome
+- **Kickoff BoO corridor evaluation = PASS (phase-1 criteria met).**
+- No follow-up tweak run triggered (initial run was unambiguous pass).
+
+## 2026-03-02 22:36 EST — BoO phase-2 stress extension (tight-scope dt/method cross-check)
+
+### Run
+- `python notebooks/boo_phase2_stress_extension.py`
+
+### Artifacts
+- `notebooks/outputs/grqm_boo_phase2_stress_20260302_223624/phase2_run_log.jsonl`
+- `notebooks/outputs/grqm_boo_phase2_stress_20260302_223624/boo_phase2_crosscheck_summary.csv`
+- `notebooks/outputs/grqm_boo_phase2_stress_20260302_223624/boo_phase2_crosscheck_deltas.csv`
+- `notebooks/outputs/grqm_boo_phase2_stress_20260302_223624/boo_phase2_report.json`
+
+### Outcome (explicit)
+- Cases completed: **18/18 PASS**
+- Deterministic anchor recheck: **PASS**
+- Threshold/governance mutation: **NOT TRIGGERED**
+- Cross-check spread vs anchor:
+  - max rel ΔQ1 = **0.8553**
+  - max rel ΔBoO-slow = **0.8548**
+  - max rel ΔBoO-fast = **18.9667**
+
+### Interpretation
+- Operational stress run succeeded with deterministic/non-empty logs.
+- Method dependence remains large under Euler stress path; keep BoO as exploratory diagnostic only.
+- Recommendation for broad BoO adoption: **NO-GO (defer)**.
