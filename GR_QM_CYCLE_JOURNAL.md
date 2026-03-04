@@ -470,3 +470,18 @@ otebooks/outputs/grqm_quick_revert_hardening_20260302_214712/
 ### Scope discipline
 - Diagnostic/evidence-prep only.
 - No claim/policy mutation.
+
+## 2026-03-03 21:41–21:42 EST — Edge mitigation micro-package scoring
+
+### Scoring summary (45 rows)
+- global max q2_p95: `5.118016110916557e-08`
+- global max q2_p99: `6.730758567163875e-08`
+- method maxima:
+  - DOP853 q2_p95/q2_p99 max: `5.272e-09 / 6.943e-09`
+  - LSODA q2_p95/q2_p99 max: `5.118e-08 / 6.731e-08`
+  - Radau q2_p95/q2_p99 max: `1.848e-11 / 2.861e-11`
+
+### Governance handling
+- Created filled ledger-style evidence note:
+  - `GR_QM_LEDGER_NOTE_EDGE_MITIGATION_FILLED_2026-03-03.md`
+- Decision in note: keep edge BLOCKED (pending companion q1/refinement/hardening/replication checks).
