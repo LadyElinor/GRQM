@@ -410,3 +410,27 @@ otebooks/outputs/grqm_quick_revert_hardening_20260302_214712/
 - No immediate claim-status mutation.
 - No threshold mutation.
 - Added explicit path for potential reopen if falsification triggers fire.
+
+## 2026-03-03 21:29–21:33 EST — Cliff sequencing block (prediction + prediagnostic)
+
+### Actions completed
+- Added prediagnostic runner:
+  - `notebooks/cliff_prediagnostic_report.py`
+- Executed prediagnostic:
+  - output: `notebooks/outputs/grqm_cliff_prediagnostic_20260303/`
+- Added pre-registered mechanism predictions:
+  - `GR_QM_CLIFF_MECHANISM_PREDICTIONS_PREREG_2026-03-03.md`
+
+### Key prediagnostic snapshot
+- core pass-all rate: `1.0` (25/25)
+- edge305 pass-all rate (dense follow-up): `0.0` (0/5)
+- core q1_refine max: `2.80e-07`
+- edge305 q1_refine range: `4.30e-02 .. 3.76e-01`
+- core q2_p95 max: `2.85e-01`
+- edge305 q2_p95 range (dense): `1.42e+01 .. 3.33e+02`
+- edge305 spike-detected rate: `0.6`
+- edge305 DOP853 microbatch q2_p95/q2_p99 max: `1.434e-04 / 1.947e-04`
+
+### Interpretation
+- Cliff manifestation appears strongly path/method-sensitive in existing evidence.
+- Edge remains blocked; mechanism explanation remains mandatory before any expansion.
