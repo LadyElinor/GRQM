@@ -453,3 +453,20 @@ otebooks/outputs/grqm_quick_revert_hardening_20260302_214712/
 ### Conservative interpretation
 - Strong evidence that prior edge blow-up is dominated by numerical-path effects on this subset.
 - No status change executed; edge remains blocked pending full predeclared mitigation package.
+
+## 2026-03-03 21:38–21:40 EST — Edge mitigation micro-package prep + pilot run
+
+### Added
+- `notebooks/edge_mitigation_micro_package.py`
+- `GR_QM_EDGE_MITIGATION_PACKAGE_PLAN_2026-03-03.md`
+- `GR_QM_LEDGER_NOTE_EDGE_MITIGATION_TEMPLATE_2026-03-03.md`
+- Updated `GR_QM_CLIFF_MECHANISM_PREDICTIONS_PREREG_2026-03-03.md` with explicit >=90–95% suppression discriminator.
+
+### Executed pilot
+- `python notebooks/edge_mitigation_micro_package.py`
+- Output: `notebooks/outputs/grqm_edge_mitigation_micro_20260303_213950/`
+- Rows generated: `45` (3 omega × 5 alpha × 3 methods)
+
+### Scope discipline
+- Diagnostic/evidence-prep only.
+- No claim/policy mutation.
