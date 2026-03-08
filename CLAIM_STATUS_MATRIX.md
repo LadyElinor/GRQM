@@ -1,7 +1,7 @@
 # Claim Status Matrix
 
 Created: 2026-02-28  
-Updated: 2026-03-05 (C-GRQM-002 governance Option A executed; promoted in-core with explicit scope caveat)
+Updated: 2026-03-08 (edge extension governance addendum logged; core status unchanged)
 
 Purpose: enforce disciplined claim handling using **PROVEN / OPEN / BLOCKED** states.
 
@@ -98,3 +98,21 @@ Cross-refs:
 Claim promotion requires:
 - OPEN → PROVEN: evidence hardening + no unresolved high-impact assumption conflict.
 - BLOCKED → OPEN: blocker explicitly resolved and logged in failure/assumption registers.
+
+## Edge extension governance update (2026-03-08)
+
+- New receipt (full completion):
+  - `notebooks/outputs/grqm_edge_companion_inpolicy_adaptive_checkpointed_20260307_132048/edge_companion_aggregate.json`
+- Packet outcome:
+  - `completed_cases=20/20`, `pass_all_packet_rate=1.0`
+  - `max_q1_refinement=1.0475384872639079e-08` (threshold 1e-6)
+  - `max_q1_hardened=0.1483037382017592` (threshold 0.18)
+  - `max_q2_p95=0.0`, `max_q2_p99=0.0`, `max_replication=0.0`
+
+Governance decision:
+- C-WDW-001 core status remains **PROVEN (core envelope)**.
+- Edge lane receives **exploratory-open extension** to `O_m <= 0.31` under mandatory constraints:
+  1) adaptive refinement,
+  2) Radau baseline stiff solver,
+  3) overlapping-time interpolation for refinement metrics.
+- Physical caveat remains mandatory for any edge-lane interpretation: transient non-perturbative dominance (`correction/classical > 1`) near `O_m=0.3075` means this lane is outside the perturbative semiclassical validity assumed by C-WDW-001.

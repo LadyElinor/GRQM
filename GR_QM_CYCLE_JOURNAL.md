@@ -293,7 +293,7 @@ otebooks/outputs/grqm_quick_revert_hardening_20260302_214712/
 ### Next trigger
 - Run first BoO corridor baseline sweep from `notebooks/boo_branch_starter.py` and log pass/fail against plan criteria.
 
-## 2026-03-02 22:21–22:23 EST — BoO branch kickoff corridor evaluation (phase-1)
+## 2026-03-02 22:21ï¿½22:23 EST ï¿½ BoO branch kickoff corridor evaluation (phase-1)
 
 ### Scope run
 - Reviewed kickoff plan: `GR_QM_BOO_BRANCH_PLAN_2026-03-02.md`
@@ -354,7 +354,7 @@ otebooks/outputs/grqm_quick_revert_hardening_20260302_214712/
 - Method dependence remains large under Euler stress path; keep BoO as exploratory diagnostic only.
 - Recommendation for broad BoO adoption: **NO-GO (defer)**.
 
-## 2026-03-03 18:15–18:23 EST — Autonomous governance/doc hardening block
+## 2026-03-03 18:15ï¿½18:23 EST ï¿½ Autonomous governance/doc hardening block
 
 ### Actions completed
 - Added public status banner to `README.md` (PROVEN/OPEN/BLOCKED with envelope caveat).
@@ -385,7 +385,7 @@ otebooks/outputs/grqm_quick_revert_hardening_20260302_214712/
 - No claim-status mutation.
 - Core envelope caveat unchanged (`O_m>=0.305` still blocked).
 
-## 2026-03-03 21:25 EST — External critique ingestion + governance hardening
+## 2026-03-03 21:25 EST ï¿½ External critique ingestion + governance hardening
 
 ### Input
 - New critique file added by user: `critique.txt`
@@ -411,7 +411,7 @@ otebooks/outputs/grqm_quick_revert_hardening_20260302_214712/
 - No threshold mutation.
 - Added explicit path for potential reopen if falsification triggers fire.
 
-## 2026-03-03 21:29–21:33 EST — Cliff sequencing block (prediction + prediagnostic)
+## 2026-03-03 21:29ï¿½21:33 EST ï¿½ Cliff sequencing block (prediction + prediagnostic)
 
 ### Actions completed
 - Added prediagnostic runner:
@@ -435,7 +435,7 @@ otebooks/outputs/grqm_quick_revert_hardening_20260302_214712/
 - Cliff manifestation appears strongly path/method-sensitive in existing evidence.
 - Edge remains blocked; mechanism explanation remains mandatory before any expansion.
 
-## 2026-03-03 21:33–21:35 EST — Edge integrator hierarchy micro-scan (diagnostic)
+## 2026-03-03 21:33ï¿½21:35 EST ï¿½ Edge integrator hierarchy micro-scan (diagnostic)
 
 ### Command executed
 - `python notebooks/edge_integrator_hierarchy_scan.py`
@@ -454,24 +454,24 @@ otebooks/outputs/grqm_quick_revert_hardening_20260302_214712/
 - Strong evidence that prior edge blow-up is dominated by numerical-path effects on this subset.
 - No status change executed; edge remains blocked pending full predeclared mitigation package.
 
-## 2026-03-03 21:38–21:40 EST — Edge mitigation micro-package prep + pilot run
+## 2026-03-03 21:38ï¿½21:40 EST ï¿½ Edge mitigation micro-package prep + pilot run
 
 ### Added
 - `notebooks/edge_mitigation_micro_package.py`
 - `GR_QM_EDGE_MITIGATION_PACKAGE_PLAN_2026-03-03.md`
 - `GR_QM_LEDGER_NOTE_EDGE_MITIGATION_TEMPLATE_2026-03-03.md`
-- Updated `GR_QM_CLIFF_MECHANISM_PREDICTIONS_PREREG_2026-03-03.md` with explicit >=90–95% suppression discriminator.
+- Updated `GR_QM_CLIFF_MECHANISM_PREDICTIONS_PREREG_2026-03-03.md` with explicit >=90ï¿½95% suppression discriminator.
 
 ### Executed pilot
 - `python notebooks/edge_mitigation_micro_package.py`
 - Output: `notebooks/outputs/grqm_edge_mitigation_micro_20260303_213950/`
-- Rows generated: `45` (3 omega × 5 alpha × 3 methods)
+- Rows generated: `45` (3 omega ï¿½ 5 alpha ï¿½ 3 methods)
 
 ### Scope discipline
 - Diagnostic/evidence-prep only.
 - No claim/policy mutation.
 
-## 2026-03-03 21:41–21:42 EST — Edge mitigation micro-package scoring
+## 2026-03-03 21:41ï¿½21:42 EST ï¿½ Edge mitigation micro-package scoring
 
 ### Scoring summary (45 rows)
 - global max q2_p95: `5.118016110916557e-08`
@@ -511,3 +511,66 @@ otebooks/outputs/grqm_quick_revert_hardening_20260302_214712/
 ### Decision
 - Keep edge lane BLOCKED (unchanged).
 - Keep C-WDW-001 in-core envelope unchanged.
+
+## 2026-03-06 21:44â€“21:47 EST â€” Reflection + PM retrofit checkpoint
+
+### Actions completed
+- Reviewed new PM reference docs in `projectmanagement/` and distilled operational rules into:
+  - `projectmanagement/PM_AGENT_PLAYBOOK.md`
+- Ran edge sequence autonomously:
+  - `python notebooks/edge_mitigation_micro_package.py`
+    - `notebooks/outputs/grqm_edge_mitigation_micro_20260306_211144/`
+  - `python notebooks/edge_integrator_hierarchy_scan.py`
+    - `notebooks/outputs/grqm_edge_integrator_hierarchy_20260306_211213/`
+  - `python notebooks/edge_companion_full_packet.py`
+    - `notebooks/outputs/grqm_edge_companion_full_20260306_211220/`
+- Wrote synthesis docs:
+  - `GR_QM_NEXT_STEPS_2026-03-06.md`
+  - `GR_QM_EDGE_PACKAGE_NOTE_2026-03-06.md`
+  - `GR_QM_PROCESS_DEBT_AND_FIXES_2026-03-06.md`
+- Updated monthly governance report with 2026-03-06 edge addendum.
+
+### Key run results (full companion packet)
+From `edge_companion_full_aggregate.json`:
+- `pass_all_packet_rate = 0.0`
+- `max_q1_refinement = 1.0631576892200914e-04` (fails threshold `1e-6`)
+- `max_q1_hardened = 0.0718878636515612` (passes threshold `0.18`)
+- `max_q2_p95 = 0.0`, `max_q2_p99 = 0.0`, `max_replication = 0.0` (all pass)
+
+### Reflection (Hansei)
+- What worked:
+  - Autonomous execution and documentation cadence were strong; receipts were generated and logged without scope drift.
+  - Method-risk diagnostics remained highly consistent with earlier evidence (numerical-path suppression signal persists).
+- What failed / process debt exposed:
+  - Companion-gate coupling was interpreted too late in prior flow; q2 looked clean while q1 refinement remained the decisive blocker.
+  - Acceptance semantics need tighter hierarchy (governance gate vs stretch target) in a single canonical note.
+- What changes next cycle:
+  1. Enforce fail-fast/Jidoka when q1 refinement breaches hard threshold in edge packet scripts.
+  2. Require all companion gates in the same packet before any edge-lane narrative updates.
+  3. Publish a canonical one-page bundle index per run-day to reduce audit friction.
+
+### Status
+- Edge lane remains BLOCKED.
+- Primary blocker is now sharply localized: q1 refinement stability at edge.
+
+## 2026-03-08 12:08 EDT — Edge packet closure milestone (first full edge-pass packet)
+
+### Run completion
+- Resumed checkpointed in-policy adaptive packet:
+  - `python notebooks/edge_companion_global_adaptive_packet.py --mode inpolicy --out-dir notebooks/outputs/grqm_edge_companion_inpolicy_adaptive_checkpointed_20260307_132048 --resume`
+- Final status: **code 0**, **20/20 completed**.
+- Final aggregate:
+  - `notebooks/outputs/grqm_edge_companion_inpolicy_adaptive_checkpointed_20260307_132048/edge_companion_aggregate.json`
+
+### Final metrics
+- `pass_all_packet_rate = 1.0`
+- `max_q1_refinement = 1.0475384872639079e-08`
+- `max_q1_hardened = 0.1483037382017592`
+- `max_q2_p95 = 0.0`
+- `max_q2_p99 = 0.0`
+- `max_replication = 0.0`
+
+### Governance impact
+- First complete all-gates-passing edge packet achieved under adaptive refinement + Radau baseline + overlapping-time interpolation constraints.
+- Core claim scope unchanged (C-WDW-001 remains PROVEN in original core envelope).
+- Edge lane opened for exploratory inclusion up to `O_m <= 0.31` with mandatory caveat on non-perturbative transient regime.
