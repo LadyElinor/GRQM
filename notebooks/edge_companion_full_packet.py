@@ -80,9 +80,16 @@ def integrate(omega_m, alpha_qg, use_approx, method='Radau', t_span=None, rtol=1
 
 
 def q1_delta(omega_m: float, alpha_qg: float, dt_eval: float, a0=0.1, v0=1.5, method="Radau", rtol=1e-10, atol=1e-12):
-    t = np.linspace(IC.t0, IC.t1, int(round((IC.t1 - IC.t0) / dt_eval)) + 1)
     tb, ab = integrate(omega_m, alpha_qg, False, method=method, t_span=(IC.t0, IC.t1), rtol=rtol, atol=atol, a0=a0, v0=v0)
     tc, ac = integrate(omega_m, alpha_qg, True, method=method, t_span=(IC.t0, IC.t1), rtol=rtol, atol=atol, a0=a0, v0=v0)
+
+    # Guard against variable-length adaptive trajectories by evaluating only on overlap.
+    t0 = max(float(tb[0]), float(tc[0]))
+    t1 = min(float(tb[-1]), float(tc[-1]))
+    if t1 <= t0:
+        raise RuntimeError(f"No overlapping time window for interpolation (t0={t0}, t1={t1})")
+
+    t = np.linspace(t0, t1, int(round((t1 - t0) / dt_eval)) + 1)
     a_b = np.interp(t, tb, ab)
     a_c = np.interp(t, tc, ac)
     return float(l2_rel_err(a_c - a_b, a_b)), t, a_b, a_c
@@ -92,10 +99,21 @@ def q1_refine(omega_m: float, alpha_qg: float, dt_main=1e-3, method="Radau", rto
     dt_ref = dt_main / 2
     _, t_m, a_b_m, a_c_m = q1_delta(omega_m, alpha_qg, dt_main, method=method, rtol=rtol, atol=atol)
     _, t_r, a_b_r, a_c_r = q1_delta(omega_m, alpha_qg, dt_ref, method=method, rtol=rtol, atol=atol)
-    a_b_m_on_r = np.interp(t_r, t_m, a_b_m)
-    a_c_m_on_r = np.interp(t_r, t_m, a_c_m)
-    e1 = l2_rel_err(a_b_m_on_r - a_b_r, a_b_r)
-    e2 = l2_rel_err(a_c_m_on_r - a_c_r, a_c_r)
+
+    t0 = max(float(t_m[0]), float(t_r[0]))
+    t1 = min(float(t_m[-1]), float(t_r[-1]))
+    if t1 <= t0:
+        raise RuntimeError(f"No overlapping refinement window (t0={t0}, t1={t1})")
+
+    mask_r = (t_r >= t0) & (t_r <= t1)
+    t_common = t_r[mask_r]
+    a_b_r_common = a_b_r[mask_r]
+    a_c_r_common = a_c_r[mask_r]
+
+    a_b_m_on_r = np.interp(t_common, t_m, a_b_m)
+    a_c_m_on_r = np.interp(t_common, t_m, a_c_m)
+    e1 = l2_rel_err(a_b_m_on_r - a_b_r_common, a_b_r_common)
+    e2 = l2_rel_err(a_c_m_on_r - a_c_r_common, a_c_r_common)
     return float(max(e1, e2))
 
 

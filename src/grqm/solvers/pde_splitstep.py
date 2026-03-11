@@ -29,6 +29,11 @@ def split_step_sn_1d(
     mass: float,
     hbar: float,
     kappa: float,
+    dispersion_enabled: bool = False,
+    dispersion_A: float = 0.0,
+    dispersion_C: float = 0.0,
+    dispersion_omega: float = 1.0,
+    dispersion_r_softening: float = 1e-3,
 ):
     """Second-order Strang split-step for 1D Schrödinger–Newton.
 
@@ -42,6 +47,15 @@ def split_step_sn_1d(
 
     kinetic_phase_half = np.exp(-1j * (hbar * (k**2) / (2.0 * mass)) * (dt / 2.0))
 
+    # Optional dynamic-vacuum diagnostic branch:
+    # k_eff^2(x) = omega^2 * (A + C / r), with r -> |x| + softening in 1D.
+    if dispersion_enabled:
+        r = np.abs(x) + float(max(dispersion_r_softening, 1e-12))
+        k_eff_sq_x = (dispersion_omega**2) * (dispersion_A + dispersion_C / r)
+        dispersion_phase_half = np.exp(-1j * (hbar / (2.0 * mass)) * k_eff_sq_x * (dt / 2.0))
+    else:
+        dispersion_phase_half = None
+
     psi_hist = np.zeros((n_steps + 1, n), dtype=complex)
     phi_hist = np.zeros((n_steps + 1, n), dtype=float)
     psi_hist[0] = psi
@@ -54,6 +68,8 @@ def split_step_sn_1d(
         # kinetic half-step
         psi_k = np.fft.fft(psi)
         psi = np.fft.ifft(kinetic_phase_half * psi_k)
+        if dispersion_phase_half is not None:
+            psi = dispersion_phase_half * psi
 
         # potential full-step (recompute from current density)
         rho = np.abs(psi) ** 2
@@ -64,6 +80,8 @@ def split_step_sn_1d(
         # kinetic half-step
         psi_k = np.fft.fft(psi)
         psi = np.fft.ifft(kinetic_phase_half * psi_k)
+        if dispersion_phase_half is not None:
+            psi = dispersion_phase_half * psi
 
         psi_hist[i] = psi
         phi_hist[i] = phi

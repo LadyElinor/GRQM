@@ -19,6 +19,12 @@ class SNParams:
     sigma0: float = 1.0
     x0: float = 0.0
     p0: float = 0.0
+    # Dynamic-vacuum diagnostic branch (default off)
+    dispersion_enabled: bool = False
+    dispersion_A: float = 0.0
+    dispersion_C: float = 0.0
+    dispersion_omega: float = 1.0
+    dispersion_r_softening: float = 1e-3
 
 
 def _gaussian_packet(x: np.ndarray, sigma0: float, x0: float, p0: float, hbar: float):
@@ -46,6 +52,13 @@ def _q2_refinement(sig_dt: np.ndarray, sig_dt2: np.ndarray):
     return float(np.sqrt(np.mean(d**2)) / (np.sqrt(np.mean(sig_dt2**2)) + 1e-15))
 
 
+def _ipr(x: np.ndarray, psi: np.ndarray) -> float:
+    rho = np.abs(psi) ** 2
+    z = np.trapezoid(rho, x) + 1e-15
+    rho_n = rho / z
+    return float(np.trapezoid(rho_n**2, x))
+
+
 def run_sn_1d(params: SNParams, seed: int = 0):
     """Run 1D Schrödinger–Newton and compute first-pass Q1/Q2 diagnostics."""
     np.random.seed(seed)
@@ -65,6 +78,11 @@ def run_sn_1d(params: SNParams, seed: int = 0):
         mass=params.mass,
         hbar=params.hbar,
         kappa=params.kappa,
+        dispersion_enabled=params.dispersion_enabled,
+        dispersion_A=params.dispersion_A,
+        dispersion_C=params.dispersion_C,
+        dispersion_omega=params.dispersion_omega,
+        dispersion_r_softening=params.dispersion_r_softening,
     )
 
     # Free evolution (kappa=0)
@@ -76,6 +94,11 @@ def run_sn_1d(params: SNParams, seed: int = 0):
         mass=params.mass,
         hbar=params.hbar,
         kappa=0.0,
+        dispersion_enabled=params.dispersion_enabled,
+        dispersion_A=params.dispersion_A,
+        dispersion_C=params.dispersion_C,
+        dispersion_omega=params.dispersion_omega,
+        dispersion_r_softening=params.dispersion_r_softening,
     )
 
     sig_sn = np.array([_sigma_x(x, p) for p in psi_sn])
@@ -95,6 +118,11 @@ def run_sn_1d(params: SNParams, seed: int = 0):
         mass=params.mass,
         hbar=params.hbar,
         kappa=params.kappa,
+        dispersion_enabled=params.dispersion_enabled,
+        dispersion_A=params.dispersion_A,
+        dispersion_C=params.dispersion_C,
+        dispersion_omega=params.dispersion_omega,
+        dispersion_r_softening=params.dispersion_r_softening,
     )
     sig_sn2 = np.array([_sigma_x(x, p) for p in psi_sn2])
     sig_sn_dt_on_dt2 = np.interp(t2, t, sig_sn)
@@ -102,6 +130,10 @@ def run_sn_1d(params: SNParams, seed: int = 0):
 
     norms = np.array([np.trapezoid(np.abs(p) ** 2, x) for p in psi_sn])
     norm_drift = float(np.max(np.abs(norms - norms[0])))
+
+    ipr0 = _ipr(x, psi_sn[0])
+    iprf = _ipr(x, psi_sn[-1])
+    localization_ratio = float(sig_sn[-1] / (sig_sn[0] + 1e-15))
 
     return {
         "metadata": {
@@ -124,6 +156,15 @@ def run_sn_1d(params: SNParams, seed: int = 0):
         "q2": {
             "refinement_rel_diff": q2_refine,
             "norm_drift_max": norm_drift,
+        },
+        "q3_dynamic_vacuum": {
+            "enabled": bool(params.dispersion_enabled),
+            "null_toggle_C0": bool(abs(params.dispersion_C) <= 1e-30),
+            "stop_band_consistent": bool(params.dispersion_A < 0.0),
+            "localization_sigma_ratio_final_over_initial": localization_ratio,
+            "ipr_initial": ipr0,
+            "ipr_final": iprf,
+            "ipr_delta": float(iprf - ipr0),
         },
         "series": {
             "t": t.tolist(),

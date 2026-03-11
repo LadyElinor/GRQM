@@ -574,3 +574,27 @@ From `edge_companion_full_aggregate.json`:
 - First complete all-gates-passing edge packet achieved under adaptive refinement + Radau baseline + overlapping-time interpolation constraints.
 - Core claim scope unchanged (C-WDW-001 remains PROVEN in original core envelope).
 - Edge lane opened for exploratory inclusion up to `O_m <= 0.31` with mandatory caveat on non-perturbative transient regime.
+
+## 2026-03-11 09:18 EST — SN diagnostics lane (`t_max` extension) completion
+
+### Commands / artifacts
+- Runner: `python notebooks/sn_diagnostic_lane_20260311.py`
+- Output root: `notebooks/outputs/sn_diagnostic_lane_20260311_091839/`
+- Key receipts:
+  - `run_receipt.json`
+  - `stage1_tmax_extension_summary.csv`
+  - `stage1_tmax_extension_aggregate.json`
+
+### Requested stage executed
+- `kappa=1e-3`, `C in {0,0.01,0.05}`, `t_max in {20,30}`
+- Runtime profile: `dt=2e-3`, `n_grid=128` with targeted retighten `1e-3/256`
+
+### Outcome (governance-normalized)
+- q1 detect (`>0.05`): crossed (`max=0.06457`, 3/6 rows above threshold)
+- q1 refinement (`<1e-6`): mixed (`4/6` pass; worst `1.29e-6`)
+- norm drift (strict/practical): fail (`max=3.00e-4`; practical fail in 6/6)
+- localization ratio expected band (1.00–1.05): fail (`1.072..1.468`)
+- ipr shift sanity: pass (negative shifts throughout)
+
+### Discipline note
+Result is **diagnostic only**. Detection crossing alone is not sufficient for claim upgrade due concurrent numerical/localization governance failures.

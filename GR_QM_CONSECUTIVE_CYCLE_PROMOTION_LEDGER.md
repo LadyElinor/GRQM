@@ -17,3 +17,21 @@ Updated from auditable artifacts only. Unknowns are marked explicitly.
 - Pass rates are computed directly from each cycle artifact CSV.
 - Where a pass flag was absent, documented gate thresholds from current plan/scripts were applied deterministically.
 - Promotion eligibility is conservative: consecutive all-gate cycles in same envelope + no unresolved high-impact assumptions.
+
+## Addendum (2026-03-11, SN diagnostics lane)
+
+`t_max` extension packet receipt:
+- `notebooks/outputs/sn_diagnostic_lane_20260311_091839/run_receipt.json`
+- summary: `.../stage1_tmax_extension_summary.csv`
+- continuation note: `GR_QM_SN_SWEEP_NOTE_2026-03-11.md`
+
+Status-normalized snapshot (stage-1 only, `kappa=1e-3`, `C={0,0.01,0.05}`, `t_max in {20,30}`):
+- `q1_signal` max `0.06457` vs detect `>0.05` → **WATCH/PARTIAL PASS** (`3/6` rows)
+- `q1_refinement_proxy` max `1.29e-6` vs `<1e-6` → **WATCH** (`4/6` rows pass)
+- `norm_drift` max `3.00e-4` vs strict `<1e-10` / practical `<1e-5` → **FAIL**
+- `loc_sigma_ratio` range `[1.072,1.468]` vs expected `1.00–1.05` → **FAIL**
+- `ipr_delta` range `[-1.68e-2,-3.66e-3]` (negative-shift sanity) → **PASS**
+
+Overall verdict: detection crossed in exploratory numerics, but governance-quality stability failed; claim status unchanged (diagnostic only, not publishable evidence).
+
+Next trigger: controlled stronger-`kappa` probe (`kappa in {3e-3,1e-2}`) with tighter numerics and bounded sweep size.

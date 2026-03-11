@@ -70,5 +70,23 @@ Envelope status (quick map):
   - `notebooks/outputs/grqm_edge_boundary_sweep_omega031_20260308_122537/README.md`
   - aggregate file: `notebooks/outputs/grqm_edge_boundary_sweep_omega031_20260308_122537/edge_boundary_sweep_aggregate.json`
 
-**Last updated:** March 08, 2026
-**Next update trigger:** next nonlinear scalar or LQC lane phase result, or any claim-status mutation.
+## Active Diagnostic Branches
+
+### SN branch snapshot (2026-03-11, post `t_max` extension)
+
+Receipt root:
+- `notebooks/outputs/sn_diagnostic_lane_20260311_091839/`
+- continuation note: `GR_QM_SN_SWEEP_NOTE_2026-03-11.md`
+
+- **q1_signal**: max `0.06457` (threshold `> 0.05`) → **WATCH/PARTIAL PASS** (`3/6` rows above detect threshold)
+- **q1_refinement_proxy**: max `1.29e-6` (threshold `< 1e-6`) → **WATCH** (`4/6` pass)
+- **norm_drift**: max `3.00e-4` (strict `<1e-10`; practical `<1e-5`) → **FAIL** (`0/6` pass practical)
+- **loc_sigma_ratio**: range `[1.072, 1.468]` (expected `1.00–1.05`) → **FAIL**
+- **ipr_delta**: range `[-1.68e-2, -3.66e-3]` (small negative shift sanity) → **PASS**
+
+**Overall run verdict:** detection threshold was crossed in this exploratory packet, but governance-quality numerics failed on norm drift and localization bounds; result remains diagnostic-only.
+
+**Recommended next step:** if continuing SN signal lane, run controlled stronger-`kappa` probe (`kappa in {3e-3,1e-2}`) with tighter numerics and smaller controlled sweep size to separate true signal growth from drift/localization artifacts.
+
+**Last updated:** March 11, 2026
+**Next update trigger:** stronger-`kappa` controlled probe receipt or any claim-status mutation.
