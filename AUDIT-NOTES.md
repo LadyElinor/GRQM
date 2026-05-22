@@ -11,8 +11,8 @@ This note records the observed live state of `C:\Users\arren\.openclaw\workspace
   - `AUDIT-NOTES.md`
   - plus `archive/`, `notebooks/`, `outputs/`, `src/`, and `tests/`
 - This means the earlier concern about root markdown clutter is **not true for the current GRQM repo checkout**.
-- The repo does **not** currently contain a `LICENSE` file.
-- The repo does **not** currently contain `CLAIM_STATUS_MATRIX.md` or `CANONICAL_ARTIFACTS.md`.
+- The repo does **not** currently contain a `LICENSE` file. (Superseded by reconciliation pass on 2026-05-21; `LICENSE` now exists at repo root.)
+- The repo does **not** currently contain `CLAIM_STATUS_MATRIX.md` or `CANONICAL_ARTIFACTS.md`. (Superseded by reconciliation pass on 2026-05-21; both now exist under `docs/`.)
 - The repo does contain `archive/session-notes/2026-03/`, so the archive pattern is present in the live tree.
 
 ## README / orientation findings
@@ -76,9 +76,21 @@ That changes the recommended next move:
      - temporary staging workspace pending reconciliation
      - canonical internal research workspace from which public GRQM is derived
 2. If canonical trimmed repo:
-   - add `LICENSE`
-   - restore or recreate `CLAIM_STATUS_MATRIX.md` / `CANONICAL_ARTIFACTS.md` equivalents if still important
+   - add `LICENSE` (completed 2026-05-21)
+   - restore or recreate `CLAIM_STATUS_MATRIX.md` / `CANONICAL_ARTIFACTS.md` equivalents if still important (completed in curated `docs/` layer on 2026-05-21)
    - add `docs/ORIENTATION.md`
 3. If incomplete reduction:
    - diff against `Molt\workspace\Physics`
    - decide a keep/archive/restore list before messaging the repo publicly
+
+## Reconciliation correction addendum (2026-05-22)
+This audit note captured a real intermediate state during the 2026-05-21 reconciliation pass, but several of its repo-state observations were superseded by later same-day changes that were subsequently pushed.
+
+Specifically:
+- `LICENSE` was added at repo root.
+- `CLAIM_STATUS_MATRIX.md` and `CANONICAL_ARTIFACTS.md` were restored into the curated `docs/` layer.
+- dead public entrypoints were later pruned (`scripts/run_toy_model.py` removed; `grqm.cli` console entrypoint removed from `pyproject.toml`).
+- `runner_phase2.py` was quarantined under `archive/quarantined-lanes/` rather than kept in the live runnable source surface.
+- `requirements-lock.txt` was added as a governed lockfile.
+
+This file should therefore be read as a dated audit snapshot plus correction trail, not as a perfect description of the current live repo state after reconciliation completed.
