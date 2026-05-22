@@ -18,6 +18,7 @@ This map separates **canonical public artifacts** from **archival or exploratory
 - `pyproject.toml`
 - `requirements.txt`
 - `requirements-dev.txt` (if maintained)
+- `requirements-lock.txt`
 - `src/`
 - `tests/`
 
@@ -33,6 +34,9 @@ This map separates **canonical public artifacts** from **archival or exploratory
 
 ## Currently missing / conditional canonical artifact
 - `outputs/bohmian_adaptation_20260319_191614/` was identified during reconciliation as a likely canonical bundle candidate, but it is **not currently present in the live working tree** and is **not present in `origin/main`**. Treat it as conditional pending recovery/confirmation from archival sources.
+
+## Reconciliation note (2026-05-21)
+Some historical governance artifacts, especially in `docs/CLAIM_STATUS_MATRIX.md`, still reference evidence bundles from the richer predecessor workspace that are not all shipped in the reduced public GRQM tree. That mismatch is currently tracked as an honesty/governance limitation of the reduced public surface rather than silently papered over.
 
 ## Promotion rule (archival -> canonical)
 An archival artifact becomes canonical only when all are true:

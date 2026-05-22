@@ -5,7 +5,9 @@ Updated: 2026-03-08 (edge extension governance addendum logged; core status unch
 
 Purpose: enforce disciplined claim handling using **PROVEN / OPEN / BLOCKED** states.
 
-Quick status anchor: `docs/CURRENT_TRUTH_2026-03.md`.
+Quick status anchor: `docs/CANONICAL_ARTIFACTS.md`.
+
+Reconciliation note (2026-05-21): this matrix preserves historical governance status statements from the richer predecessor workspace. Some cited evidence paths refer to artifacts that are not currently shipped in the reduced public GRQM tree. Unless/until those bundles are re-exported into the canonical public surface, treat those evidence links as governance-facing historical references rather than a guarantee of in-repo public artifact availability.
 
 ---
 

@@ -50,6 +50,32 @@ Use the operator-family standards when extending this repo:
 3. add explicit audit notes for floor/guard behavior and validity boundaries
 4. separate research claims from probe capabilities in maintainer docs
 
+## Running
+
+Install from the governed dependency surface:
+
+```powershell
+pip install -r requirements-lock.txt
+```
+
+Run tests:
+
+```powershell
+pytest -q
+```
+
+Live entrypoints in the reduced public repo:
+- Schrödinger-Newton diagnostic runner: `python scripts/run_schrodinger_newton.py`
+- Bohmian phase-1 lane via module/source imports under `src/grqm/bohmian_probe/`
+
+Not currently runnable in the reduced public repo:
+- the older toy-model CLI / `run_toy_model.py` path
+- Bohmian phase-2 runner, which is quarantined pending intentional restoration of its missing dependency surface
+
+## Reconciliation note
+
+This public GRQM repo is a reduced canonical surface derived from a richer predecessor workspace. Some historical governance docs and claim-matrix references still point to evidence artifacts that are not all shipped in this reduced tree. Until those bundles are explicitly re-exported, interpret such references as historical governance pointers rather than guarantees of in-repo public artifact availability.
+
 ## Status
 
 This README was created to give the repo a canonical maintainer-facing entrypoint before deeper physics or code changes.

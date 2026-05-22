@@ -4,6 +4,7 @@
 *_files/
 __pycache__/
 *.pyc
+*.egg-info/
 
 # Default: ignore bulk generated outputs
 notebooks/outputs/*
