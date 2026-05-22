@@ -1,110 +1,55 @@
-# GRQM (Governance-First Toy Proxy)
+# GRQM
 
-A scoped computational-physics workflow for testing **process reliability** and a narrow **WDW-inspired toy correction signal**.
+GRQM is a receipts-first research workspace for toy general-relativity / quantum-mechanics-adjacent probes, currently centered on:
 
-Canonical status source: `CLAIM_STATUS_MATRIX.md`.
+- Bohmian minisuperspace proxy experiments in `src/grqm/bohmian_probe/`
+- 1D Schrödinger-Newton toy experiments in `src/grqm/models/` and `src/grqm/solvers/`
+- archived run artifacts and notes under `notebooks/outputs/`, `outputs/`, and `archive/session-notes/`
 
-## Current Truth (status at a glance)
-Read `docs/CURRENT_TRUTH_2026-03.md` for proven claims, envelope, caveats, and active lanes.
+## Current posture
 
-## Minimal mental model
-- This repo is a **methodology + toy-model** stack.
-- We run a tiny FRW-inspired ODE with/without a correction term.
-- We treat outputs as **in-core evidence only** (not broad physical confirmation).
-- Governance files track what is OPEN/PROVEN/BLOCKED and why.
+This repository should be treated as an exploratory research sandbox, not a validated physical theory implementation.
 
-## 60-second quickstart
-```bash
-cd Physics
-python -m pip install -e .[dev]
-python scripts/run_toy_model.py --out-dir outputs
-pytest
-```
+The codebase contains useful probes and receipts, but several model-validity and simulation-audit boundaries should be made explicit:
 
-## Reproduce the edge lift + boundary check
-```bash
-cd Physics
-# edge packet closure receipt (in-policy adaptive packet)
-python notebooks/edge_companion_global_adaptive_packet.py --mode inpolicy --resume --out-dir notebooks/outputs/grqm_edge_companion_inpolicy_adaptive_checkpointed_20260307_132048
+- toy models are not interchangeable with full GR, Wheeler-DeWitt, LQC, or quantum-gravity claims
+- dimensional conventions are largely implicit and often effectively nondimensionalized
+- some guardrails prioritize numerical containment over physically transparent failure
+- generated outputs and archived notes are substantial parts of the evidence trail
 
-# boundary confirmation mini-sweep at Ω_m=0.31
-python notebooks/edge_boundary_confirmation_sweep.py
-```
+## Structure
 
-Canonical boundary receipt:
-`notebooks/outputs/grqm_edge_boundary_sweep_omega031_20260308_122537/README.md`
+- `src/grqm/bohmian_probe/`
+  - symbolic minisuperspace receipts
+  - Bohmian guidance toy dynamics
+  - phase runners
+- `src/grqm/models/`
+  - Schrödinger-Newton toy model wrappers
+- `src/grqm/solvers/`
+  - numerical solver implementations
+- `tests/`
+  - currently sparse as checked-in source; cached pytest artifacts exist
+- `notebooks/outputs/`, `outputs/`
+  - run products and receipts
+- `archive/session-notes/`
+  - historical research notes and decision artifacts
 
-Expected artifacts:
-- `outputs/grqm_proxy_results_v1.json`
-- `outputs/grqm_proxy_results_v1_summary.csv`
+## Recommended operating discipline
 
-## Architecture sketch
-```text
-src/grqm/core.py
-  ├─ integrate() + accel() + metrics
-  └─ run_cycle()
-       ├─ symbolic receipt call (src/grqm/symbolic.py)
-       ├─ writes canonical JSON + summary CSV
-       └─ returned dict consumed by tests/scripts
+Use the operator-family standards when extending this repo:
 
-scripts/run_toy_model.py
-  └─ thin CLI wrapper around run_cycle()
+- `physics-operator`: state regime, units, and validity boundaries before interpretation
+- `math-operator`: keep symbolic claims receipt-backed
+- `programming-operator`: make the smallest safe code changes and verify them
+- `simulation-audit-operator`: treat diagnostics, clipping, convergence, and invariants as first-class audit targets
 
-tests/
-  ├─ toy-model invariants (refinement, signal persistence, determinism)
-  └─ symbolic scaling checks
+## Immediate enhancement targets
 
-notebooks/
-  └─ diagnostic/governance support scripts (non-canonical unless promoted)
-```
+1. restore visible source tests and entrypoint documentation
+2. document model assumptions and non-goals for each toy lane
+3. add explicit audit notes for floor/guard behavior and validity boundaries
+4. separate research claims from probe capabilities in maintainer docs
 
-## Canonical JSON example
-From `grqm_proxy_results_v1.json`:
+## Status
 
-```json
-{
-  "metadata": {
-    "seed": 42,
-    "model": "FRW-inspired minisuperspace toy ODE",
-    "params": {"omega_m": 0.3, "omega_l": 0.7, "alpha_qg": 1e-7},
-    "symbolic_validation": {"derivation_ok": true}
-  },
-  "q1": {
-    "delta_proxy_l2": 0.001,
-    "baseline_refinement_error": 0.000001,
-    "corrected_refinement_error": 0.000001
-  },
-  "q2": {
-    "D_star": 0.002,
-    "replication_rel_diff": 0.01
-  }
-}
-```
-
-(Values above are schema-shaped examples; run locally for exact values.)
-
-## Artifact map + reproducibility
-- Canonical vs archival map: `CANONICAL_ARTIFACTS.md`
-- Dependency/repro tiers: `docs/REPRODUCIBILITY_TIERS.md`
-- Strict lockfile path (for governed reruns): `requirements-lock.txt`
-
-## Edge lane governance language (canonical)
-Edge region (`Ω_m <= 0.31`) is now numerically tractable and passes all proxy gates under mandatory constraints: adaptive refinement + stiff solver (Radau baseline) + overlapping-time interpolation for refinement metrics.
-
-Exploratory inclusion is approved under those constraints.
-
-Physical claims in this lane require the semiclassical validity caveat: transient non-perturbative dominance (`correction/classical ratio > 1` near `min_a ≈ 0.01`).
-
-## Session notes location
-Dated working notes were moved out of root for navigability:
-- `archive/session-notes/2026-03/`
-
-Canonical governance/status files remain in root.
-
-## Repository layout
-- `src/grqm/` — core model, symbolic receipts, package CLI
-- `scripts/` — stable entrypoints
-- `tests/` — automated smoke/invariant tests
-- `notebooks/` — exploratory + diagnostic scripts
-- `docs/` — rationale, derivation, and reproducibility guidance
-- `archive/session-notes/` — dated narrative notes and interim packets
+This README was created to give the repo a canonical maintainer-facing entrypoint before deeper physics or code changes.
